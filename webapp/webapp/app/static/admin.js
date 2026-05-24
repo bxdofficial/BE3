@@ -432,6 +432,31 @@
         { key: 'discord_card3_desc', label: 'كارد 3 — وصف', textarea: true },
       ],
     },
+    discord_intro: {
+      title: 'قسم "إيه هو ديسكورد؟"',
+      icon: 'fa-discord',
+      fields: [
+        { key: 'discord_eyebrow', label: 'النص الصغير (Eyebrow)' },
+        { key: 'discord_title', label: 'العنوان (HTML)', textarea: true },
+        { key: 'discord_sub', label: 'الوصف الكبير', textarea: true },
+        { key: 'discord_card1_title', label: 'كارد 1 — عنوان' },
+        { key: 'discord_card1_desc', label: 'كارد 1 — وصف', textarea: true },
+        { key: 'discord_card2_title', label: 'كارد 2 — عنوان' },
+        { key: 'discord_card2_desc', label: 'كارد 2 — وصف', textarea: true },
+        { key: 'discord_card3_title', label: 'كارد 3 — عنوان' },
+        { key: 'discord_card3_desc', label: 'كارد 3 — وصف', textarea: true },
+      ],
+    },
+    cta: {
+      title: 'الـ Call to Action النهائي',
+      icon: 'fa-bullhorn',
+      fields: [
+        { key: 'cta_title', label: 'العنوان (HTML)', textarea: true },
+        { key: 'cta_desc', label: 'الوصف', textarea: true },
+        { key: 'cta_button', label: 'نص الزر' },
+        { key: 'invite_link', label: 'رابط دعوة Discord' },
+      ],
+    },
   };
 
   async function renderSettingsTab(groupKey) {
@@ -570,6 +595,19 @@
         { key: 'icon', label: 'أيقونة FontAwesome' },
       ],
       render: (it) => ({ icon: it.icon, bg: 'linear-gradient(135deg,#fbbf24,#f59e0b)', title: it.label, sub: '' }),
+    },
+    onestop: {
+      title: 'كل اللي محتاجه في مكان واحد',
+      icon: 'fa-box-archive',
+      sectionSettings: ['onestop_eyebrow', 'onestop_title', 'onestop_sub', 'onestop_footnote'],
+      table: 'onestop_items',
+      fields: [
+        { key: 'title', label: 'العنوان' },
+        { key: 'description', label: 'الوصف', textarea: true },
+        { key: 'icon', label: 'أيقونة FontAwesome', hint: 'مثل fa-solid fa-code' },
+        { key: 'gradient', label: 'تدرج اللون (CSS Gradient)', hint: 'linear-gradient(135deg,#6366f1,#8b5cf6)' },
+      ],
+      render: (it) => ({ icon: it.icon, bg: it.gradient, title: it.title, sub: it.description }),
     },
   };
 
@@ -791,7 +829,7 @@
   function loadTab(tab) {
     if (tab === 'overview') return renderOverview();
     if (tab === 'images') return renderImages();
-    if (tab === 'settings' || tab === 'hero' || tab === 'about') return renderSettingsTab(tab);
+    if (tab === 'settings' || tab === 'hero' || tab === 'about' || tab === 'discord_intro' || tab === 'cta') return renderSettingsTab(tab);
     if (LIST_CONFIG[tab]) return renderListTab(tab);
     if (tab === 'account') return renderAccount();
     $('#content').innerHTML = `<div class="text-center py-20 text-slate-500">قسم غير متوفر</div>`;

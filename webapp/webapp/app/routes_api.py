@@ -20,6 +20,7 @@ LIST_TABLES = {
     'stats':         ['icon', 'number', 'label', 'sort_order', 'is_visible'],
     'safety_points': ['icon', 'text', 'sort_order', 'is_visible'],
     'marquee_items': ['icon', 'label', 'sort_order', 'is_visible'],
+    'onestop_items': ['icon', 'gradient', 'title', 'description', 'sort_order', 'is_visible'],
 }
 
 

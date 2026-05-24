@@ -99,6 +99,17 @@ CREATE TABLE IF NOT EXISTS marquee_items (
   is_visible INTEGER DEFAULT 1
 );
 
+-- ============ One-Stop items ("كل اللي محتاجه في مكان واحد") ============
+CREATE TABLE IF NOT EXISTS onestop_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  icon TEXT NOT NULL,
+  gradient TEXT NOT NULL,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  sort_order INTEGER DEFAULT 0,
+  is_visible INTEGER DEFAULT 1
+);
+
 -- ============ Admin users ============
 CREATE TABLE IF NOT EXISTS admin_users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -116,6 +127,7 @@ CREATE TABLE IF NOT EXISTS sessions (
   FOREIGN KEY (user_id) REFERENCES admin_users(id)
 );
 
+CREATE INDEX IF NOT EXISTS idx_onestop_order ON onestop_items(sort_order);
 CREATE INDEX IF NOT EXISTS idx_features_order ON features(sort_order);
 CREATE INDEX IF NOT EXISTS idx_future_order ON future_cards(sort_order);
 CREATE INDEX IF NOT EXISTS idx_steps_order ON steps(sort_order);

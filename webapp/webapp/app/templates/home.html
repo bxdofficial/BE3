@@ -44,9 +44,10 @@
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#about"><i class="fa-solid fa-circle-info"></i> عن المجتمع</a></li>
-        <li><a href="#features"><i class="fa-solid fa-sparkles"></i> المميزات</a></li>
-        <li><a href="#roles"><i class="fa-solid fa-user-shield"></i> الرتب</a></li>
-        <li><a href="#future"><i class="fa-solid fa-rocket"></i> رؤيتنا</a></li>
+        <li><a href="#what-discord"><i class="fa-brands fa-discord"></i> إيه ديسكورد</a></li>
+        <li><a href="#onestop"><i class="fa-solid fa-box-archive"></i> كل اللي محتاجه</a></li>
+        <li><a href="#features"><i class="fa-solid fa-sparkles"></i> جوا السيرفر</a></li>
+        <li><a href="#future"><i class="fa-solid fa-rocket"></i> القادم</a></li>
         <li><a href="#join"><i class="fa-solid fa-door-open"></i> الانضمام</a></li>
         <li><a href="#faq"><i class="fa-solid fa-circle-question"></i> الأسئلة</a></li>
       </ul>
@@ -178,6 +179,51 @@
           <h3>{{ s.get('discord_card3_title', '') }}</h3><p>{{ s.get('discord_card3_desc', '') }}</p>
         </div>
       </div>
+
+      <div class="inline-cta" data-aos="fade-up">
+        <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <i class="fa-brands fa-discord"></i>
+          <span>سجّل في ديسكورد وادخل سيرفرنا</span>
+          <i class="fa-solid fa-arrow-left arrow-icon"></i>
+        </a>
+        <span class="inline-cta-hint">مفيش حاجة هتنزل على جهازك — اشتغل من المتصفح لو حابب</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- One-Stop section: كل اللي محتاجه في مكان واحد -->
+  <section class="section section-onestop" id="onestop">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <span class="eyebrow">{{ s.get('onestop_eyebrow', '') }}</span>
+        <h2 class="section-title">{{ s.get('onestop_title', '') | safe }}</h2>
+        <p class="section-sub">{{ s.get('onestop_sub', '') }}</p>
+      </div>
+
+      <div class="features-grid">
+        {%- for o in onestop -%}
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 60 }}">
+            <div class="feature-icon" style="background:{{ o.gradient }}">
+              <i class="{{ o.icon }}"></i>
+            </div>
+            <h3>{{ o.title }}</h3>
+            <p>{{ o.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <p class="future-note" data-aos="fade-up" style="margin-top:2rem;">
+        <i class="fa-solid fa-info-circle"></i>
+        <span>{{ s.get('onestop_footnote', '') | safe }}</span>
+      </p>
+
+      <div class="inline-cta" data-aos="zoom-in">
+        <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <i class="fa-brands fa-discord"></i>
+          <span>ادخل السيرفر دلوقتي</span>
+          <i class="fa-solid fa-arrow-left arrow-icon"></i>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -210,6 +256,15 @@
           {%- endfor -%}
         </div>
       </div>
+
+      <div class="inline-cta" data-aos="fade-up">
+        <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <i class="fa-brands fa-discord"></i>
+          <span>انضم للمؤسسين الأوائل</span>
+          <i class="fa-solid fa-arrow-left arrow-icon"></i>
+        </a>
+        <span class="inline-cta-hint">الموقع مجرد شرح سريع — كل التفاعل بيحصل جوا السيرفر</span>
+      </div>
     </div>
   </section>
 
@@ -231,6 +286,14 @@
             <p>{{ f.description }}</p>
           </div>
         {%- endfor -%}
+      </div>
+
+      <div class="inline-cta" data-aos="zoom-in">
+        <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <i class="fa-brands fa-discord"></i>
+          <span>شوف ده بنفسك — ادخل السيرفر</span>
+          <i class="fa-solid fa-arrow-left arrow-icon"></i>
+        </a>
       </div>
     </div>
   </section>

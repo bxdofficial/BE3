@@ -173,6 +173,7 @@ python run.py
 | `stats` | إحصائيات قسم About |
 | `safety_points` | نقاط الأمان |
 | `marquee_items` | عناصر الشريط المتحرك |
+| `onestop_items` | بطاقات قسم "كل اللي محتاجه في مكان واحد" |
 | `admin_users` | حسابات الإدارة |
 | `sessions` | جلسات الدخول |
 
@@ -197,7 +198,7 @@ python run.py
 | POST   | `/api/account/password` | تغيير كلمة السر |
 
 الجداول المتاحة في `/api/list/<table>`:
-`features`, `future_cards`, `steps`, `faqs`, `roles`, `stats`, `safety_points`, `marquee_items`
+`features`, `future_cards`, `steps`, `faqs`, `roles`, `stats`, `safety_points`, `marquee_items`, `onestop_items`
 
 ---
 
