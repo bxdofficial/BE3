@@ -1,0 +1,424 @@
+{#- ByteEgypt Homepage - Jinja2 template (port of src/lib/render.ts) -#}
+{%- set s = settings -%}
+{%- set INVITE_LINK = s.get('invite_link') or 'https://discord.gg/kGj7yGmVU' -%}
+{%- set logo = logo_url -%}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>{{ s.get('site_title') or 'ByteEgypt' }}</title>
+  <meta name="description" content="{{ s.get('site_description', '') }}" />
+  <meta property="og:title" content="{{ s.get('brand_name_en') or 'ByteEgypt' }} | {{ s.get('brand_name_ar', '') }}" />
+  <meta property="og:description" content="{{ s.get('site_description', '') }}" />
+  <meta property="og:image" content="{{ logo }}" />
+  <meta name="theme-color" content="#6366f1" />
+  <link rel="icon" type="image/png" href="{{ logo }}" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <!-- Animated background -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="{{ logo }}" alt="{{ s.get('brand_name_en') or 'ByteEgypt' }}" />
+        <span class="nav-logo-text">
+          <span class="logo-be">{{ s.get('brand_name_en') or 'ByteEgypt' }}</span>
+          <span class="logo-ar">{{ s.get('brand_name_ar') or 'بايت مصر' }}</span>
+        </span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about"><i class="fa-solid fa-circle-info"></i> عن المجتمع</a></li>
+        <li><a href="#features"><i class="fa-solid fa-sparkles"></i> المميزات</a></li>
+        <li><a href="#roles"><i class="fa-solid fa-user-shield"></i> الرتب</a></li>
+        <li><a href="#future"><i class="fa-solid fa-rocket"></i> رؤيتنا</a></li>
+        <li><a href="#join"><i class="fa-solid fa-door-open"></i> الانضمام</a></li>
+        <li><a href="#faq"><i class="fa-solid fa-circle-question"></i> الأسئلة</a></li>
+      </ul>
+
+      <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="btn btn-primary btn-nav">
+        <i class="fa-brands fa-discord"></i>
+        <span>انضم الآن</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container hero-container">
+      <div class="hero-content" data-aos="fade-up">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          <span>{{ s.get('hero_badge', '') }}</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="gradient-text">{{ s.get('brand_name_en') or 'ByteEgypt' }}</span>
+          <span class="hero-title-ar">{{ s.get('brand_name_ar') or 'بايت مصر' }} <span class="flag">🇪🇬</span></span>
+        </h1>
+
+        <p class="hero-subtitle">{{ s.get('hero_subtitle', '') | safe }}</p>
+
+        <div class="hero-actions">
+          <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+            <i class="fa-brands fa-discord"></i>
+            <span>{{ s.get('hero_cta_primary') or 'انضم للمجتمع الآن' }}</span>
+            <i class="fa-solid fa-arrow-left arrow-icon"></i>
+          </a>
+          <a href="#about" class="btn btn-ghost btn-lg">
+            <i class="fa-solid fa-circle-play"></i>
+            <span>{{ s.get('hero_cta_secondary') or 'اعرف أكتر' }}</span>
+          </a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item">
+            <i class="fa-solid fa-lock"></i>
+            <span>{{ s.get('hero_trust_1', '') }}</span>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-users"></i>
+            <span>{{ s.get('hero_trust_2', '') }}</span>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-gift"></i>
+            <span>{{ s.get('hero_trust_3', '') }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+        <div class="hero-card">
+          <div class="card-header">
+            <div class="card-dots"><span></span><span></span><span></span></div>
+            <span class="card-title">discord.gg/ByteEgypt</span>
+          </div>
+          <div class="card-body">
+            <div class="card-server">
+              <img src="{{ logo }}" alt="Logo" class="card-server-logo" />
+              <div>
+                <h3>{{ s.get('brand_name_en') or 'ByteEgypt' }} | {{ s.get('brand_name_ar') or 'بايت مصر' }}</h3>
+                <div class="card-meta">
+                  <span><span class="online-dot"></span> مجتمع نشط</span>
+                  <span><i class="fa-solid fa-graduation-cap"></i> طلاب حاسبات</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-purple">Programming</span>
+              <span class="tag tag-green">Technology</span>
+              <span class="tag tag-blue">Education</span>
+              <span class="tag tag-pink">Community</span>
+              <span class="tag tag-orange">Students</span>
+            </div>
+            <div class="card-desc">Egypt's Tech Community for CS &amp; AI Students • Resources, Help, Networking</div>
+            <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="card-btn">
+              <i class="fa-brands fa-discord"></i> Accept Invite
+            </a>
+          </div>
+        </div>
+
+        <div class="float-card float-card-1"><i class="fa-solid fa-code"></i><span>قنوات برمجة</span></div>
+        <div class="float-card float-card-2"><i class="fa-solid fa-graduation-cap"></i><span>مذاكرة جماعية</span></div>
+        <div class="float-card float-card-3"><i class="fa-solid fa-briefcase"></i><span>فرص قادمة</span></div>
+      </div>
+    </div>
+
+    <div class="scroll-down" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-track">
+      {%- for m in marquee -%}
+        <span><i class="{{ m.icon }}"></i> {{ m.label }}</span>
+      {%- endfor -%}
+      {%- for m in marquee -%}
+        <span><i class="{{ m.icon }}"></i> {{ m.label }}</span>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <!-- What is Discord -->
+  <section class="section" id="what-discord">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <span class="eyebrow">{{ s.get('discord_eyebrow', '') }}</span>
+        <h2 class="section-title">{{ s.get('discord_title', '') | safe }}</h2>
+        <p class="section-sub">{{ s.get('discord_sub', '') }}</p>
+      </div>
+
+      <div class="three-cols">
+        <div class="mini-card" data-aos="fade-up"><div class="mini-icon" style="background:#5865F2"><i class="fa-brands fa-discord"></i></div>
+          <h3>{{ s.get('discord_card1_title', '') }}</h3><p>{{ s.get('discord_card1_desc', '') }}</p>
+        </div>
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="100"><div class="mini-icon" style="background:#10b981"><i class="fa-solid fa-comments"></i></div>
+          <h3>{{ s.get('discord_card2_title', '') }}</h3><p>{{ s.get('discord_card2_desc', '') }}</p>
+        </div>
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="200"><div class="mini-icon" style="background:#f59e0b"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>{{ s.get('discord_card3_title', '') }}</h3><p>{{ s.get('discord_card3_desc', '') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section section-about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text" data-aos="fade-left">
+          <span class="eyebrow">{{ s.get('about_eyebrow', '') }}</span>
+          <h2 class="section-title">{{ s.get('about_title', '') | safe }}</h2>
+          <p>{{ s.get('about_p1', '') | safe }}</p>
+          <p>{{ s.get('about_p2', '') | safe }}</p>
+          <ul class="check-list">
+            {%- for k in ['about_check_1','about_check_2','about_check_3','about_check_4','about_check_5'] -%}
+              {%- set v = s.get(k) -%}
+              {%- if v -%}
+                <li><i class="fa-solid fa-circle-check"></i> {{ v | safe }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        <div class="about-stats" data-aos="fade-right">
+          {%- for st in stats -%}
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="{{ loop.index0 * 100 }}">
+              <i class="{{ st.icon }} stat-icon"></i>
+              <div class="stat-number {% if st.number == '∞' %}static-text{% endif %}" data-target="{{ st.number }}">{{ st.number }}</div>
+              <div class="stat-label">{{ st.label }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <span class="eyebrow">{{ s.get('features_eyebrow', '') }}</span>
+        <h2 class="section-title">{{ s.get('features_title', '') | safe }}</h2>
+        <p class="section-sub">{{ s.get('features_sub', '') }}</p>
+      </div>
+      <div class="features-grid">
+        {%- for f in features -%}
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 50 }}">
+            <div class="feature-icon" style="background:{{ f.gradient }}">
+              <i class="{{ f.icon }}"></i>
+            </div>
+            <h3>{{ f.title }}</h3>
+            <p>{{ f.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- Roles -->
+  <section class="section" id="roles">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <span class="eyebrow">{{ s.get('roles_eyebrow', '') }}</span>
+        <h2 class="section-title">{{ s.get('roles_title', '') | safe }}</h2>
+        <p class="section-sub">{{ s.get('roles_sub', '') }}</p>
+      </div>
+      <div class="roles-wrap">
+        <div class="role-group" data-aos="fade-up">
+          <h4 class="role-group-title"><i class="fa-solid fa-graduation-cap"></i> السنة الدراسية</h4>
+          <div class="roles-row">
+            {%- for r in roles_by_group.get('years', []) -%}
+              <span class="role-chip" style="--c:{{ r.color }}">{{ r.label }}</span>
+            {%- endfor -%}
+          </div>
+        </div>
+        <div class="role-group" data-aos="fade-up" data-aos-delay="100">
+          <h4 class="role-group-title"><i class="fa-solid fa-microchip"></i> التخصصات التقنية</h4>
+          <div class="roles-row">
+            {%- for r in roles_by_group.get('specializations', []) -%}
+              <span class="role-chip" style="--c:{{ r.color }}">{{ r.label }}</span>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future -->
+  <section class="section section-future" id="future">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <span class="eyebrow">{{ s.get('future_eyebrow', '') }}</span>
+        <h2 class="section-title">{{ s.get('future_title', '') | safe }}</h2>
+        <p class="section-sub">{{ s.get('future_sub', '') }}</p>
+      </div>
+      <div class="future-grid">
+        {%- for f in future -%}
+          <div class="future-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 80 }}">
+            <div class="future-badge"><i class="fa-solid fa-clock"></i> {{ f.badge or 'قريباً' }}</div>
+            <i class="{{ f.icon }} future-icon"></i>
+            <h3>{{ f.title }}</h3>
+            <p>{{ f.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="future-note" data-aos="fade-up">
+        <i class="fa-solid fa-info-circle"></i>
+        <p>{{ s.get('future_note', '') | safe }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety -->
+  <section class="section section-safety" id="safety">
+    <div class="container">
+      <div class="safety-grid">
+        <div class="safety-text" data-aos="fade-left">
+          <span class="eyebrow">{{ s.get('safety_eyebrow', '') }}</span>
+          <h2 class="section-title">{{ s.get('safety_title', '') | safe }}</h2>
+          <p>{{ s.get('safety_desc', '') }}</p>
+          <div class="safety-points">
+            {%- for p in safety -%}
+              <div class="safety-point"><i class="{{ p.icon }}"></i> <span>{{ p.text }}</span></div>
+            {%- endfor -%}
+          </div>
+        </div>
+        <div class="safety-visual" data-aos="fade-right">
+          <div class="verify-card">
+            <div class="verify-head">
+              <span class="verify-bot">🐢 ByteEgypt-bot</span>
+              <span class="verify-badge">APP</span>
+            </div>
+            <div class="verify-title"><span class="verify-emoji">✅</span><h3>توثيق الحساب</h3></div>
+            <p>اضغط على الإيموجي ✅ بالأسفل عشان توثّق حسابك وتفتحلك كل قنوات المجتمع.</p>
+            <div class="verify-react"><span class="react-btn">✅ <strong>1</strong></span><span class="react-add">+</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join -->
+  <section class="section section-join" id="join">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <span class="eyebrow">{{ s.get('join_eyebrow', '') }}</span>
+        <h2 class="section-title">{{ s.get('join_title', '') | safe }}</h2>
+        <p class="section-sub">{{ s.get('join_sub', '') }}</p>
+      </div>
+      <div class="steps">
+        {%- for st in steps -%}
+          <div class="step" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+            <div class="step-num">{{ st.step_num }}</div>
+            <i class="{{ st.icon }} step-icon"></i>
+            <h3>{{ st.title }}</h3>
+            <p>{{ st.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="join-cta" data-aos="zoom-in">
+        <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="btn btn-primary btn-xl">
+          <i class="fa-brands fa-discord"></i>
+          <span>{{ s.get('join_cta') or 'انضم دلوقتي' }}</span>
+          <i class="fa-solid fa-arrow-left arrow-icon"></i>
+        </a>
+        <p class="join-note">{{ s.get('join_note', '') }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container container-narrow">
+      <div class="section-head" data-aos="fade-up">
+        <span class="eyebrow">{{ s.get('faq_eyebrow', '') }}</span>
+        <h2 class="section-title">{{ s.get('faq_title', '') | safe }}</h2>
+      </div>
+      <div class="faq-list">
+        {%- for q in faqs -%}
+          <details class="faq-item" data-aos="fade-up">
+            <summary>
+              <span>{{ q.question }}</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <p>{{ q.answer | safe }}</p>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="cta-box" data-aos="zoom-in">
+        <div class="cta-glow"></div>
+        <img src="{{ logo }}" alt="{{ s.get('brand_name_en') or 'ByteEgypt' }}" class="cta-logo" />
+        <h2>{{ s.get('cta_title', '') | safe }}</h2>
+        <p>{{ s.get('cta_desc', '') }}</p>
+        <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" class="btn btn-primary btn-xl">
+          <i class="fa-brands fa-discord"></i>
+          <span>{{ s.get('cta_button') or 'انضم للمجتمع دلوقتي' }}</span>
+        </a>
+        <div class="cta-mini">
+          <span><i class="fa-solid fa-bolt"></i> الانضمام في 30 ثانية</span>
+          <span><i class="fa-solid fa-gift"></i> مجاني</span>
+          <span><i class="fa-solid fa-shield"></i> آمن 100%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <img src="{{ logo }}" alt="{{ s.get('brand_name_en') or 'ByteEgypt' }}" />
+        <div>
+          <h3>{{ s.get('footer_brand_title', '') }}</h3>
+          <p>{{ s.get('footer_brand_desc', '') }}</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#about">عن المجتمع</a>
+        <a href="#features">المميزات</a>
+        <a href="#future">رؤيتنا</a>
+        <a href="#join">طريقة الانضمام</a>
+        <a href="#faq">الأسئلة الشائعة</a>
+      </div>
+      <div class="footer-social">
+        <a href="{{ INVITE_LINK }}" target="_blank" rel="noopener" aria-label="Discord" class="footer-discord">
+          <i class="fa-brands fa-discord"></i><span>Discord</span>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>{{ s.get('footer_copyright', '') }}</p>
+      <p class="signature-line"><i class="fa-solid fa-code"></i> {{ s.get('signature') or 'egybyte by Yousef Khames' }}</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

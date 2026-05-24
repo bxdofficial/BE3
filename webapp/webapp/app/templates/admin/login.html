@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول | ByteEgypt Admin</title>
+  <link rel="icon" href="{{ url_for('static', filename='community-logo.png') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Cairo', sans-serif; background: radial-gradient(circle at 20% 10%, #1e2a5c 0%, #05081f 50%, #000 100%); min-height: 100vh; }
+    .login-card { backdrop-filter: blur(20px); }
+    .gradient-text { background: linear-gradient(135deg, #8b5cf6, #4ade80); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  </style>
+</head>
+<body class="flex items-center justify-center p-4">
+  <div class="login-card w-full max-w-md bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl">
+    <div class="text-center mb-8">
+      <img src="{{ url_for('static', filename='community-logo.png') }}" alt="ByteEgypt" class="w-20 h-20 mx-auto mb-4 rounded-2xl object-cover" />
+      <h1 class="text-3xl font-black text-white mb-2">
+        لوحة التحكم <span class="gradient-text">ByteEgypt</span>
+      </h1>
+      <p class="text-gray-400 text-sm">سجل دخولك للتحكم في الموقع</p>
+    </div>
+
+    {% if error %}
+    <div class="mb-4 bg-red-500/20 border border-red-500/40 text-red-200 rounded-lg px-4 py-3 text-sm">
+      <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="/admin/login" class="space-y-4">
+      <div>
+        <label class="block text-gray-300 text-sm mb-2 font-bold">اسم المستخدم</label>
+        <div class="relative">
+          <i class="fa-solid fa-user absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input type="text" name="username" required autocomplete="username"
+                 class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 pr-10 text-white focus:outline-none focus:border-purple-400 transition"
+                 placeholder="admin" />
+        </div>
+      </div>
+      <div>
+        <label class="block text-gray-300 text-sm mb-2 font-bold">كلمة المرور</label>
+        <div class="relative">
+          <i class="fa-solid fa-lock absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input type="password" name="password" required autocomplete="current-password"
+                 class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 pr-10 text-white focus:outline-none focus:border-purple-400 transition"
+                 placeholder="••••••••" />
+        </div>
+      </div>
+      <button type="submit"
+              class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl py-3 transition shadow-lg">
+        <i class="fa-solid fa-arrow-left-to-bracket ml-2"></i> دخول
+      </button>
+    </form>
+
+    <div class="mt-6 text-center">
+      <a href="/" class="text-gray-400 hover:text-white text-sm transition">
+        <i class="fa-solid fa-arrow-right"></i> العودة للموقع
+      </a>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-white/10 text-center">
+      <p class="text-xs text-gray-500">
+        <i class="fa-solid fa-code"></i> egybyte by <span class="text-purple-400 font-bold">Yousef Khames</span>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
