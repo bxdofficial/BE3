@@ -96,6 +96,7 @@ def get_page_data() -> dict:
     stats = list_visible('stats')
     safety = list_visible('safety_points')
     marquee = list_visible('marquee_items')
+    onestop = list_visible('onestop_items')
 
     roles_by_group = {}
     for r in roles:
@@ -111,4 +112,5 @@ def get_page_data() -> dict:
         'stats': stats,
         'safety': safety,
         'marquee': marquee,
+        'onestop': onestop,
     }

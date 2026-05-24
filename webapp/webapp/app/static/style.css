@@ -1371,3 +1371,33 @@ p { color: var(--text-dim); }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===================== One-Stop Section ===================== */
+.section-onestop {
+  background:
+    radial-gradient(ellipse at top right, rgba(16,185,129,0.05), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(245,158,11,0.05), transparent 60%);
+}
+
+/* ===================== Inline CTA (Discord invite repeated) ===================== */
+.inline-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 40px auto 0;
+  padding: 28px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.05));
+  border: 1px solid rgba(99,102,241,0.18);
+  border-radius: var(--radius-lg);
+  max-width: 680px;
+}
+.inline-cta-hint {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+@media (max-width: 640px) {
+  .inline-cta { padding: 22px 16px; margin-top: 28px; }
+}
